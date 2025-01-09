@@ -1,0 +1,14 @@
+body {
+  background-color: #FFD700; /* Fondo amarillo oscuro */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: red;
+  text-align: center;
+  padding: 20px 0;
+}
+
+
+
