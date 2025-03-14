@@ -12,6 +12,7 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Txus27/Pokeapi.git'
             }
         }  
+       /*
         //Acciones
         stage('Acciones'){
             steps{
@@ -59,6 +60,7 @@ pipeline {
             }
         }
       */
+    /*
         //Post
         post {
             success {
@@ -69,7 +71,7 @@ pipeline {
             }
         }
     }
-
+    */
 
 }
-// prueba 3
+// prueba 4
