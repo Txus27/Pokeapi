@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        K8S_SERVER = "http://192.168.58.2:32090"
+        K8S_SERVER = "http://192.168.58.2:8443" // IP de tu VPS
         K8S_TOKEN = credentials('k8s-token')
         NAMESPACE="default"
         // KUBE_CONFIG = credentials('kubeconfig') // Configura una credencial en Jenkins con el Kubeconfig de tu VPS
