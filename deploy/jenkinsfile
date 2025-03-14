@@ -1,21 +1,33 @@
 pipeline {
     agent any
-    /*
+
     environment {
         K8S_SERVER = "http://192.168.58.2:32090"
         K8S_TOKEN = credentials('k8s-token')
         NAMESPACE="default"
         // KUBE_CONFIG = credentials('kubeconfig') // Configura una credencial en Jenkins con el Kubeconfig de tu VPS
     }
-    */
+
     stages {
         stage('Clonar repositorio git Autocaravaneando desde Github') {
             steps {
                 git branch: 'master', url: 'https://github.com/Txus27/Pokeapi.git'
             }
         }  
+
+        stage('Acciones'){
+            steps{
+                script{
+                    sh """
+                        echo $K8S_SERVER
+                        echo $K8S_TOKEN
+                    """
+                }
+            }
+        }       
     }
 
+    
     
 }
 // prueba 7
