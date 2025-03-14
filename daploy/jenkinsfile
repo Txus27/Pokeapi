@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clonar repositorio git Autocaravaneando desde Github') {
+            steps {
+                git branch: 'master', url: 'https://github.com/Txus27/Pokeapi.git'
+            }
+        }
+        post {
+            success {
+                echo "Despliegue completado con éxito"
+            }
+            failure {
+                echo "Error en el despliegue"
+            }
+        }    
+    }
+}
