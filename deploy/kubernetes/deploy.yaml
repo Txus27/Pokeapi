@@ -16,7 +16,7 @@ spec:
       containers:
         - name: pokeapi-kube
           image: txus027/pokeapi
-          envFrom:
+          env:
             - name: USUARIO
               value: "juanlu"
             - name: PROYECTO
