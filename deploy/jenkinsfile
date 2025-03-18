@@ -1,12 +1,34 @@
 pipeline {
     agent any
-
     environment {
         K8S_SERVER = "https://192.168.58.2:8443" // IP de tu VPS
         K8S_TOKEN = credentials('k8s-token')
         NAMESPACE="default" // Nombre del namespace en el que se desplegará la aplicación
-        // KUBE_CONFIG = credentials('kubeconfig') // Configura una credencial en Jenkins con el Kubeconfig de tu VPS
+        DOCKER_IMAGE = "txus027/pokeapi"
+        DOCKER_TAG = "latest"
+        DOCKER_CREDENTIALS_ID = "docker-hub"
+        REPO="https://github.com/Txus27/Pokeapi.git"
     }
+
+    stage('Docker Build & Push') { 
+         steps {
+            withCredentials([usernamePassword(
+                credentialsId: "${DOCKER_CREDENTIALS_ID}",
+                usernameVariable: 'DOCKER_USER',
+                passwordVariable: 'DOCKER_PASS'
+            )]) {
+                script {
+                    sh """
+                        docker ps
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker compose --env-file /deploy/.env -f /deploy/docker-compose.yml --build
+                        docker push $DOCKER_IMAGE:$DOCKER_TAG
+                        docker logout
+                    """
+                }
+            }   
+        }
+    } 
 
     stages {
         stage('Clonar repositorio git Pokeapi desde Github') {
@@ -50,7 +72,9 @@ pipeline {
                 }
             }
         }
-   
      //Fin de STAGES
     }
+
+
+ //Fin de PIPELINE
 }
