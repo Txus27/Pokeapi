@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-env-config
+data:
+  CONTEXTO: /home/juanlu/ubuntu/caronte
+  AUTOR: txus027
+  TZ: Europe/Madrid
+  PROYECTO: Pokeapi
+  GITHUB: https://github.com/Txus27/Pokeapi.git
+  USUARIO: juanluis
+  PASSWD: usuario
+  HOSTNAME: HLC-react
+  PORT_SSH: "45678"
+  PORT_ORIGEN: "8083"
