@@ -10,6 +10,6 @@ data:
   GITHUB: https://github.com/Txus27/Pokeapi.git
   USUARIO: juanluis
   PASSWD: usuario
-  HOSTNAME: HLC-react
+  HOSTNAME: react
   PORT_SSH: "45678"
   PORT_ORIGEN: "8083"
