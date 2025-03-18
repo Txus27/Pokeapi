@@ -77,7 +77,7 @@ const Body = ({ page }) => {
       {/* Página de inicio con 10 Pokémon aleatorios */}
       {page === 'home' && (
         <div>
-          <h1>Bienvenido a la web de Pokémon</h1>
+          <h1>Bienvenido a la web de Pokémon: HLC prueba kubernetes</h1>
           <div className="row">
             {data.map((pokemon) => (
               <div className="col-md-3" key={pokemon.id}>
@@ -157,7 +157,6 @@ const Body = ({ page }) => {
               <h5>Juan Luis</h5>
               <p>Email: juan.luis@iescuravalera.com</p>
               <p>Teléfono: 950-654-320</p>
-              <p>HLC prueba kubernetes</p>
             </div>
             <div className="col-md-6">
               <img src={avatars.pedro} alt="Pedro Avatar" />
