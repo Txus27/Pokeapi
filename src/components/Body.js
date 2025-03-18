@@ -157,6 +157,7 @@ const Body = ({ page }) => {
               <h5>Juan Luis</h5>
               <p>Email: juan.luis@iescuravalera.com</p>
               <p>Teléfono: 950-654-320</p>
+              <p>HLC prueba kubernetes</p>
             </div>
             <div className="col-md-6">
               <img src={avatars.pedro} alt="Pedro Avatar" />
