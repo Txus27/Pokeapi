@@ -10,8 +10,17 @@ pipeline {
         REPO="https://github.com/Txus27/Pokeapi.git"
     }
 
-    stage('Docker Build & Push') { 
-         steps {
+
+
+    stages {
+        stage('Clonar repositorio git Pokeapi desde Github') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Txus27/Pokeapi.git'
+            }
+        }  
+
+                 stage('Docker Build & Push') { 
+        steps {
             withCredentials([usernamePassword(
                 credentialsId: "${DOCKER_CREDENTIALS_ID}",
                 usernameVariable: 'DOCKER_USER',
@@ -29,13 +38,6 @@ pipeline {
             }   
         }
     } 
-
-    stages {
-        stage('Clonar repositorio git Pokeapi desde Github') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Txus27/Pokeapi.git'
-            }
-        }       
 
         stage('Configurar acceso a Kubernetes') {
             steps { //conexion jenkins a kubernetes
