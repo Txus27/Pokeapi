@@ -16,13 +16,10 @@ spec:
       containers:
         - name: pokeapi-kube
           image: txus027/pokeapi
-          envFrom:
-            - configMapRef:
-                name: app-env-config
-          volumeMounts:
-            - name: auto-logs
-              mountPath: /root/logs
-      volumes:
-        - name: auto-logs
-          persistentVolumeClaim:
-            claimName: auto-pvc
+          env:
+            - name: USUARIO
+              value: "juanlu"
+            - name: PROYECTO
+              value: "Pokeapi"
+            - name: GITHUB
+              value: "https://github.com/Txus27/Pokeapi.git"
