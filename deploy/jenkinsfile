@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        K8S_SERVER = "http://192.168.58.2:30480" // IP de tu VPS
+        K8S_SERVER = "192.168.58.2:8443" // IP de tu VPS
         K8S_TOKEN = credentials('k8s-token')
-        NAMESPACE="default"
+        NAMESPACE="DEFAULT" // Nombre del namespace en el que se desplegará la aplicación
         // KUBE_CONFIG = credentials('kubeconfig') // Configura una credencial en Jenkins con el Kubeconfig de tu VPS
     }
 
@@ -13,21 +13,45 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/Txus27/Pokeapi.git'
             }
-        }  
+        }       
 
-        stage('Acciones'){
-            steps{
-                script{
+        stage('Configurar acceso a Kubernetes') {
+            steps { //conexion jenkins a kubernetes
+                script {
                     sh """
-                        echo $K8S_SERVER
-                        echo $K8S_TOKEN
+                    kubectl config set-cluster k8s-cluster --server=$K8S_SERVER --insecure-skip-tls-verify=true
+                    kubectl config set-credentials jenkins --token=$K8S_TOKEN
+                    kubectl config set-context jenkins --cluster=k8s-cluster --user=jenkins --namespace=$NAMESPACE
+                    kubectl config use-context jenkins
                     """
                 }
             }
-        }       
+        }
+
+        stage('Verificar kubectl 1') {
+            steps {
+                sh 'kubectl version --client'
+                // sh 'kubectl config current-context' // Verifica que está usando el contexto correcto
+                sh 'kubectl get nodes' // Confirma conexión con el clúster
+            }
+        }
+
+        stage('Deploy en Kubernetes') {
+            steps {
+                script {
+                    //sh "kubectl apply -f deploy/kubernetes/namespace.yaml"
+                    //sh "kubectl apply -f deploy/kubernetes/configMap.yaml"
+                    //sh "kubectl apply -f deploy/kubernetes/pvc.yaml"
+                    //sh "kubectl delete deploy react-deployment -n sp-auto"
+                    sh "kubectl apply -f deploy/kubernetes/deploy.yaml"
+                    sh "kubectl apply -f deploy/kubernetes/serviceNP.yaml"
+                }
+            }
+        }
+   
+   
     }
 
-    
-    
+
+
 }
-// prueba con main
