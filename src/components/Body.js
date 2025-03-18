@@ -77,7 +77,7 @@ const Body = ({ page }) => {
       {/* Página de inicio con 10 Pokémon aleatorios */}
       {page === 'home' && (
         <div>
-          <h1>Bienvenido a la web de Pokémon: HLC prueba kubernetes</h1>
+          <h1>Bienvenido a la web de Pokémon: HLC prueba JuanLuis</h1>
           <div className="row">
             {data.map((pokemon) => (
               <div className="col-md-3" key={pokemon.id}>
