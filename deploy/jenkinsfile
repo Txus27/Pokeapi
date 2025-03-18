@@ -18,8 +18,9 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Txus27/Pokeapi.git'
             }
         }  
-        /*
-        //Tendriamos que instalar docker en el servidor jenkins para que funcione
+        
+        //En JENKISN no tengo DOCKER, hay que instalarlo y conectarlo al docker del VPS
+        //similar a lo que hicimos en el kubectl en JENKINS y conectarlo la KUBERNETES del VPS
         stage('Docker Build & Push') { 
          steps {
             withCredentials([usernamePassword(
@@ -39,7 +40,7 @@ pipeline {
                 }   
             }
         } 
-        */
+        
         stage('Configurar acceso a Kubernetes') {
             steps { //conexion jenkins a kubernetes
                 script {
@@ -69,7 +70,7 @@ pipeline {
                     //sh "kubectl apply -f deploy/kubernetes/namespace.yaml"
                     //sh "kubectl apply -f deploy/kubernetes/configMap.yaml"
                     //sh "kubectl apply -f deploy/kubernetes/pvc.yaml"
-                    //sh "kubectl delete deploy react-deployment -n sp-auto"
+                    sh "kubectl delete deploy pokeapi-kube -n default"
                     sh "kubectl apply -f deploy/kubernetes/deploy.yaml"
                     sh "kubectl apply -f deploy/kubernetes/serviceNP.yaml"
                 }
