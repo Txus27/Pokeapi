@@ -150,11 +150,11 @@ const Body = ({ page }) => {
       {/* Página de contacto */}
       {page === 'contact' && (
         <div>
-          <h2>Contacto HLC</h2>
+          <h2>Contacto</h2>
           <div className="row">
             <div className="col-md-6">
               <img src={avatars.juanluis} alt="Juan Avatar" />
-              <h5>Juan Luis</h5>
+              <h5>Juan Luis - HLC</h5>
               <p>Email: juan.luis@iescuravalera.com</p>
               <p>Teléfono: 950-654-320</p>
             </div>
