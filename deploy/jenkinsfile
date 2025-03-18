@@ -18,7 +18,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Txus27/Pokeapi.git'
             }
         }  
-        
+        /*
         //En JENKISN no tengo DOCKER, hay que instalarlo y conectarlo al docker del VPS
         //similar a lo que hicimos en el kubectl en JENKINS y conectarlo la KUBERNETES del VPS
         stage('Docker Build & Push') { 
@@ -40,7 +40,7 @@ pipeline {
                 }   
             }
         } 
-        
+        */
         stage('Configurar acceso a Kubernetes') {
             steps { //conexion jenkins a kubernetes
                 script {
