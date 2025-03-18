@@ -150,7 +150,7 @@ const Body = ({ page }) => {
       {/* Página de contacto */}
       {page === 'contact' && (
         <div>
-          <h2>Contacto</h2>
+          <h2>Contacto HLC</h2>
           <div className="row">
             <div className="col-md-6">
               <img src={avatars.juanluis} alt="Juan Avatar" />
